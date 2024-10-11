@@ -2,7 +2,7 @@
     <UContainer class="max-w-md">
       <UCard class="mt-10">
         <h1 class="text-2xl">Inicio de sesión</h1>
-  
+
         <form @submit.prevent="handleSubmit" class="space-y-4">
           <UFormGroup
             v-slot="{ error }"
@@ -55,7 +55,7 @@
   
   <script setup>
   import { useApiFetch } from "~/composables/useApiFetch";
-  
+  const toast =  useToast();
   const errors = reactive({});
   const showPassword = ref(false);
   
@@ -74,18 +74,39 @@
       });
   
       if (!status.ok) {
-        throw new Error("Error al iniciar sesión");
+        manageErrors(error);
+        throw new Error('Error al iniciar sesión');
+      } else {
+        toast.add({ title: '¡Bienvenido!' });
       }
-  
     } catch (error) {
-      errors.value = error.message;
+      // errors.value = error.message;
+      console.log('ee1', error);
     }
 
-    // const { data, error, status} = await useApiFetch('/api/user-authenticated', {
-    //     method: "GET",
-    // });
-    // console.log(data);
+    const { data, error, status} = await useApiFetch('/api/user-authenticated', {
+        method: "GET",
+    });
+    console.log(data);
     
   };
+
+  function manageErrors(error) {
+    if (error.statusCode === 401) {
+        toast.add({ title: 'Acceso no autorizado', color: 'red' });
+      }
+
+      if (error.statusCode === 409) {
+        toast.add({ title: 'Error en el servidor', color: 'red' });
+      }
+
+      if (error.statusCode === 422) {
+        const errs = error.data.errors;
+
+        Object.keys(errs).forEach((key) => {
+          errors[key] = errs[key][0];
+        });
+      }
+  }
   </script>
   

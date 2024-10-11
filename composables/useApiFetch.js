@@ -1,4 +1,4 @@
-export const useApiFetch = (path = '/', options = {}) => {
+export const useApiFetch = async (path = '/', options = {}) => {
   let headers = {
     "Content-Type": "application/json"
   };
@@ -13,7 +13,7 @@ export const useApiFetch = (path = '/', options = {}) => {
 
   const urlBase = config.public.API_URL ?? ''
 
-  const { data, error, status } = useFetch(`${urlBase}${path}`, {
+  const { data, error, status } = await useFetch(`${urlBase}${path}`, {
     credentials: 'include',
     watch: false,
     ...options,
