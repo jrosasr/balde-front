@@ -7,7 +7,10 @@
           :options="['system', 'light', 'dark']"
         />
       </ColorScheme>
-      <UButton v-if="auth.isLoggedIn" @click="logout">Logout</UButton>
+      <UButton v-if="auth.isLoggedIn" @click="logout">
+        Logout
+        <UIcon name="i-lucide-log-out" />
+      </UButton>
     </div>
     <slot />
     <UNotifications />
