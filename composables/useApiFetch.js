@@ -1,34 +1,41 @@
-export const useApiFetch = async (path = '/', options = {}) => {
+export const useApiFetch = async (path = "/", options = {}) => {
   let headers = {
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
   };
-  
-  const token = useCookie('XSRF-TOKEN');
+
+  const token = useCookie("XSRF-TOKEN");
 
   if (token && token.value !== null) {
-    headers['X-XSRF-Token'] = token.value
+    headers["X-XSRF-Token"] = token.value;
   }
-  
-  const config = useRuntimeConfig()
 
-  const urlBase = config.public.API_URL ?? ''
+  if (process.server) {
+    headers = {
+      ...headers,
+      ...useRequestHeaders(["cookie", "referer"]),
+    };
+  }
+
+  const config = useRuntimeConfig();
+
+  const urlBase = config.public.API_URL ?? "";
 
   const { data, error, status } = await useFetch(`${urlBase}${path}`, {
-    credentials: 'include',
+    credentials: "include",
     watch: false,
     ...options,
     headers: {
       ...headers,
-      ...options?.headers
-    }
+      ...options?.headers,
+    },
   });
 
   return {
     data: data.value,
     error: error.value,
     status: {
-      ok: status.value === 'success',
-      ...status
-    }
+      ok: status.value === "success",
+      ...status,
+    },
   };
 };
