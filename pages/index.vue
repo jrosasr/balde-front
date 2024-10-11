@@ -21,3 +21,9 @@
     </UCard>
   </UContainer>
 </template>
+
+<script setup>
+definePageMeta({
+  middleware: ["auth"],
+})
+</script>

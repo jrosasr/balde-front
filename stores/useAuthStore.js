@@ -46,8 +46,9 @@ export const useAuthStore = defineStore("auth", () => {
       });
 
       await fetchUser();
-
+      navigateTo("/");
       return { data, error, status };
+
     } catch (error) {
       console.log("err loginWithPassword", error);
     }
