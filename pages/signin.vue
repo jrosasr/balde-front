@@ -57,6 +57,7 @@
   import { useApiFetch } from "~/composables/useApiFetch";
   const toast =  useToast();
   const auth = useAuthStore();
+  const general = useGeneralStore();
   const errors = reactive({});
   const showPassword = ref(false);
   
@@ -71,12 +72,14 @@
     try {
       const { data, error, status} = await auth.loginWithPassword(payload);
   
-      if (!status.ok) {
-        manageErrors(error);
-        throw new Error('Error al iniciar sesión');
-      } else {
-        toast.add({ title: '¡Bienvenido!' });
-      }
+      general.evaluateResponde({
+        data, 
+        error, 
+        status, 
+        showSuccessMessage: true, 
+        customMessage:'¡Bienvenido!'
+      });
+
     } catch (error) {
       console.log('ee1', error);
     }
