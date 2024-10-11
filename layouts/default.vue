@@ -1,13 +1,13 @@
 <template>
   <div class="max-w-7xl mx-auto p-4">
-    <div class="flex justify-end">
+    <div class="flex justify-end space-x-2">
       <ColorScheme>
         <USelect
           v-model="$colorMode.preference"
           :options="['system', 'light', 'dark']"
         />
       </ColorScheme>
-      <UButton @click="logout">Logout</UButton>
+      <UButton v-if="auth.isLoggedIn" @click="logout">Logout</UButton>
     </div>
     <slot />
     <UNotifications />
@@ -17,19 +17,12 @@
 <script setup>
 import { useApiFetch } from "~/composables/useApiFetch";
 const toast =  useToast();
+const auth = useAuthStore();
 
 const logout = async () => {
-  // await useApiFetch("/sanctum/csrf-cookie");
-
-  try {
-    await useApiFetch("/logout", {
-      method: "POST",
-    });
-    
-    toast.add({ title: 'Sesión finalizada.' });
-  } catch (error) {
-    console.log(error)
-  }
+  await auth.logout();
+  
+  toast.add({ title: "Sesión finalizada." });
 
 }
 </script>

@@ -56,6 +56,7 @@
   <script setup>
   import { useApiFetch } from "~/composables/useApiFetch";
   const toast =  useToast();
+  const auth = useAuthStore();
   const errors = reactive({});
   const showPassword = ref(false);
   
@@ -66,12 +67,9 @@
   
   const handleSubmit = async () => {
     await useApiFetch("/sanctum/csrf-cookie");
-  
+
     try {
-      const { data, error, status} = await useApiFetch('/login', {
-        method: "POST",
-        body: JSON.stringify(payload),
-      });
+      const { data, error, status} = await auth.loginWithPassword(payload);
   
       if (!status.ok) {
         manageErrors(error);
@@ -80,15 +78,8 @@
         toast.add({ title: '¡Bienvenido!' });
       }
     } catch (error) {
-      // errors.value = error.message;
       console.log('ee1', error);
     }
-
-    const { data, error, status} = await useApiFetch('/api/user-authenticated', {
-        method: "GET",
-    });
-    console.log(data);
-    
   };
 
   function manageErrors(error) {
