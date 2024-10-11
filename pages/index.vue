@@ -10,23 +10,25 @@
               :options="['system', 'light', 'dark']"
             />
           </ColorScheme> -->
-          <UButton>
+          <UButton v-if="auth.isAdmin">
             Crear
             <UIcon name="i-lucide-plus" />
           </UButton>
-
         </div>
       </template>
       <UTable :columns="columns" :rows="rows">
         <template #id-data="{ row }">
-          <span>#{{ row.id }}</span
-          >
+          <span>#{{ row.id }}</span>
         </template>
         <template #actions-data="{ row }">
-      <UDropdown :items="actions(row)">
-        <UButton color="gray" variant="ghost" icon="i-heroicons-ellipsis-horizontal-20-solid" />
-      </UDropdown>
-    </template>
+          <UDropdown :items="actions(row)" v-if="auth.isAdmin">
+            <UButton
+              color="gray"
+              variant="ghost"
+              icon="i-heroicons-ellipsis-horizontal-20-solid"
+            />
+          </UDropdown>
+        </template>
       </UTable>
       <div
         class="flex justify-end px-3 py-3.5 border-t border-gray-200 dark:border-gray-700"
@@ -47,6 +49,7 @@ definePageMeta({
 });
 
 const general = useGeneralStore();
+const auth = useAuthStore();
 
 const records = ref([]);
 
@@ -74,15 +77,20 @@ const columns = [
 ];
 
 const actions = (row) => [
-  [{
-    label: 'Editar',
-    icon: 'i-lucide-pencil',
-    click: () => console.log('Edit', row.id)
-  }], [{
-    label: 'Eliminar',
-    icon: 'i-lucide-trash'
-  }]
-]
+  [
+    {
+      label: "Editar",
+      icon: "i-lucide-pencil",
+      click: () => console.log("Edit", row.id),
+    },
+  ],
+  [
+    {
+      label: "Eliminar",
+      icon: "i-lucide-trash",
+    },
+  ],
+];
 
 const page = ref(1);
 const pageCount = 10;

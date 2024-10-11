@@ -91,11 +91,11 @@ const handleSubmit = async () => {
 
 function manageErrors(error) {
   if (error.statusCode === 401) {
-    toast.add({ title: "Acceso no autorizado", color: "red" });
+    toast.add({ title: "Acceso no autorizado", color: "red", timeout: 1500 });
   }
 
   if (error.statusCode === 409) {
-    toast.add({ title: "Error en el servidor", color: "red" });
+    toast.add({ title: "Error en el servidor", color: "red", timeout: 1500 });
   }
 
   if (error.statusCode === 422) {

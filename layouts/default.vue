@@ -25,7 +25,7 @@ const auth = useAuthStore();
 const logout = async () => {
   await auth.logout();
   
-  toast.add({ title: "Sesión finalizada." });
+  toast.add({ title: "Sesión finalizada.", timeout: 1500 });
 
 }
 </script>

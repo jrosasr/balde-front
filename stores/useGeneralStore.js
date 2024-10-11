@@ -38,12 +38,12 @@ export const useGeneralStore = defineStore("general", () => {
 
   function hasError(error) {
     if (error.statusCode === 401) {
-      toast.add({ title: "Acceso no autorizado", color: "red" });
+      toast.add({ title: "Acceso no autorizado", color: "red", timeout: 1500 });
       return true;
     }
 
     if (error.statusCode === 409) {
-      toast.add({ title: "Error en el servidor", color: "red" });
+      toast.add({ title: "Error en el servidor", color: "red", timeout: 1500 });
       return true;
     }
 
@@ -71,7 +71,7 @@ export const useGeneralStore = defineStore("general", () => {
     }
 
     if (showSuccessMessage) {
-      toast.add({ title: customMessage ? customMessage : "Operación exitosa" });
+      toast.add({ title: customMessage ? customMessage : "Operación exitosa", timeout: 1500 });
     }
 
     return true;
