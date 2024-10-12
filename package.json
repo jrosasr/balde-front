@@ -17,6 +17,7 @@
     "nuxt-lucide-icons": "^1.0.5"
   },
   "dependencies": {
-    "pinia": "^2.2.4"
+    "pinia": "^2.2.4",
+    "zod": "^3.23.8"
   }
 }
