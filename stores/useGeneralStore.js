@@ -7,7 +7,6 @@ export const useGeneralStore = defineStore("general", () => {
     });
 
     evaluateResponde({
-      data,
       error,
       status,
       showSuccessMessage: true,
@@ -37,8 +36,15 @@ export const useGeneralStore = defineStore("general", () => {
   }
 
   function hasError(error) {
+    let errors = {}
+
     if (error.statusCode === 401) {
       toast.add({ title: "Acceso no autorizado", color: "red", timeout: 1500 });
+      return true;
+    }
+
+    if (error.statusCode === 405) {
+      toast.add({ title: "Método no permitido.", color: "red", timeout: 1500 });
       return true;
     }
 
@@ -49,25 +55,24 @@ export const useGeneralStore = defineStore("general", () => {
 
     if (error.statusCode === 422) {
       const errs = error.data.errors;
-
+      
       Object.keys(errs).forEach((key) => {
         errors[key] = errs[key][0];
       });
-      return true;
+
+      return errors;
     }
     return false;
   }
 
   function evaluateResponde({
-    data,
     error,
     status,
     showSuccessMessage = true,
     customMessage = null,
   }) {
     if (!status.ok) {
-      hasError(error);
-      return false;
+      return hasError(error);
     }
 
     if (showSuccessMessage) {

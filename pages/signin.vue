@@ -76,34 +76,16 @@ const handleSubmit = async () => {
 
   try {
     const { data, error, status } = await auth.loginWithPassword(payload);
-
-    general.evaluateResponde({
-      data,
+    
+    Object.assign(errors, general.evaluateResponde({
       error,
       status,
       showSuccessMessage: true,
       customMessage: "¡Bienvenido!",
-    });
+    }) ?? {})
+    
   } catch (error) {
     console.log("ee1", error);
   }
 };
-
-function manageErrors(error) {
-  if (error.statusCode === 401) {
-    toast.add({ title: "Acceso no autorizado", color: "red", timeout: 1500 });
-  }
-
-  if (error.statusCode === 409) {
-    toast.add({ title: "Error en el servidor", color: "red", timeout: 1500 });
-  }
-
-  if (error.statusCode === 422) {
-    const errs = error.data.errors;
-
-    Object.keys(errs).forEach((key) => {
-      errors[key] = errs[key][0];
-    });
-  }
-}
 </script>
