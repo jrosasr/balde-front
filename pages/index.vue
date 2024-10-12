@@ -85,6 +85,12 @@ const actions = (row) => [
     {
       label: "Eliminar",
       icon: "i-lucide-trash",
+      click: async () => {
+        if (confirm('asdas')) {
+          await general.deleteRecord(`/api/users/${row.id}`)
+          await getUsers()
+        }
+      },
     },
   ],
 ];
@@ -99,7 +105,7 @@ const rows = computed(() => {
   );
 });
 
-onMounted(async () => {
+async function getUsers() {
   const { data, error, status } = await useApiFetch("/api/users");
 
   records.value = data.users.map((user) => {
@@ -109,6 +115,9 @@ onMounted(async () => {
       date: general.formatDate(user.updated_at),
     };
   });
-  // console.log(data.users);
+}
+
+onMounted(async () => {
+  await getUsers()
 });
 </script>
