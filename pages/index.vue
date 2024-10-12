@@ -10,10 +10,7 @@
               :options="['system', 'light', 'dark']"
             />
           </ColorScheme> -->
-          <UButton v-if="auth.isAdmin">
-            Crear
-            <UIcon name="i-lucide-plus" />
-          </UButton>
+          <UserForm />
         </div>
       </template>
       <UTable :columns="columns" :rows="rows">
