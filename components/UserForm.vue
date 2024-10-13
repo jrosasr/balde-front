@@ -43,6 +43,18 @@ async function onSubmit(event) {
   errors.value = typeof evalResult === "object" ? evalResult : { ...{} };
 
   if (Object.keys(errors.value).length === 0 && status.ok) {
+
+    if (!event.data.id) {
+      const { data } = await useFetch('/api/sendEmail', {
+        method: 'POST',
+        body: {
+          email: state.email,
+          name: state.name,
+          password: state.password
+        }
+      })
+    }
+
     errors.value = {};
     Object.assign(state, reactive({}));
 
