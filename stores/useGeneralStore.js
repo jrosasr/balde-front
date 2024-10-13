@@ -53,6 +53,11 @@ export const useGeneralStore = defineStore("general", () => {
       return true;
     }
 
+    if (error.statusCode === 500) {
+      toast.add({ title: "Ocurrió un error al procesar la solicitud", color: "red", timeout: 2000 });
+      return true;
+    }
+
     if (error.statusCode === 422) {
       const errs = error.data.errors;
       

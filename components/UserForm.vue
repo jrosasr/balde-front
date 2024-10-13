@@ -42,7 +42,7 @@ async function onSubmit(event) {
 
   errors.value = typeof evalResult === "object" ? evalResult : { ...{} };
 
-  if (Object.keys(errors.value).length === 0) {
+  if (Object.keys(errors.value).length === 0 && status.ok) {
     errors.value = {};
     Object.assign(state, reactive({}));
 
