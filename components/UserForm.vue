@@ -17,52 +17,57 @@ const schema = z.object({
 });
 
 const state = reactive({
-  email: '',
-  password: '',
-  password_confirmation: '',
-  name: '',
-  last_name: '',
-  role: '',
+  email: "",
+  password: "",
+  password_confirmation: "",
+  name: "",
+  last_name: "",
+  role: "",
 });
 
 async function onSubmit(event) {
-  const url = event.data.id ? `/api/users/${event.data.id}` : '/api/users'
+  const url = event.data.id ? `/api/users/${event.data.id}` : "/api/users";
 
   const { data, error, status } = await useApiFetch(url, {
-    method: event.data.id ? 'PUT' : 'POST',
+    method: event.data.id ? "PUT" : "POST",
     body: event.data,
-  })
+  });
 
-  
   const evalResult = general.evaluateResponde({
     error,
     status,
     showSuccessMessage: true,
     customMessage: "Usuario creado correctamente.",
-  })
+  });
 
-  errors.value = typeof evalResult === 'object' ? evalResult : {...{}}
-    
+  errors.value = typeof evalResult === "object" ? evalResult : { ...{} };
+
   if (Object.keys(errors.value).length === 0) {
     errors.value = {};
     Object.assign(state, reactive({}));
 
     isOpen.value = false;
-    emit('reload');
+    emit("reload");
   }
 }
 
+/**
+ * Switches the showPassword state.
+ *
+ * This function is used in the password input to show/hide the password.
+ * It is triggered when the user clicks on the eye icon.
+ */
 function switchShowPassword() {
   showPassword.value = !showPassword.value;
 }
 
-function loadData (data) {
+function loadData(data) {
   isOpen.value = true;
-  Object.assign(state, {...data});
-};
+  Object.assign(state, { ...data });
+}
 
 defineExpose({
-  loadData
+  loadData,
 });
 
 onMounted(async () => {
@@ -117,7 +122,11 @@ onMounted(async () => {
             <UInput v-model="state.name" />
           </UFormGroup>
 
-          <UFormGroup label="Apellido(s)" name="last_name" :error="errors?.last_name">
+          <UFormGroup
+            label="Apellido(s)"
+            name="last_name"
+            :error="errors?.last_name"
+          >
             <UInput v-model="state.last_name" />
           </UFormGroup>
 
@@ -135,7 +144,11 @@ onMounted(async () => {
 
           <UDivider />
 
-          <UFormGroup label="Contraseña" name="password" :error="errors?.password">
+          <UFormGroup
+            label="Contraseña"
+            name="password"
+            :error="errors?.password"
+          >
             <template #hint>
               <UButton
                 color="gray"

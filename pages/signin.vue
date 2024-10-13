@@ -20,7 +20,7 @@
 
         <UFormGroup label="Contraseña" :error="errors?.password">
           <template #hint>
-            <div class="space-x-2 flex">
+            <div class="flex space-x-2">
               <UIcon
                 name="i-lucide-eye"
                 class="cursor-pointer"
@@ -45,9 +45,7 @@
           </template>
         </UFormGroup>
 
-        <UButton type="submit" color="primary" block>
-          Iniciar sesión
-        </UButton>
+        <UButton type="submit" color="primary" block> Iniciar sesión </UButton>
       </form>
     </UCard>
   </UContainer>
@@ -76,14 +74,16 @@ const handleSubmit = async () => {
 
   try {
     const { data, error, status } = await auth.loginWithPassword(payload);
-    
-    Object.assign(errors, general.evaluateResponde({
-      error,
-      status,
-      showSuccessMessage: true,
-      customMessage: "¡Bienvenido!",
-    }) ?? {})
-    
+
+    Object.assign(
+      errors,
+      general.evaluateResponde({
+        error,
+        status,
+        showSuccessMessage: true,
+        customMessage: "¡Bienvenido!",
+      }) ?? {}
+    );
   } catch (error) {
     console.log("ee1", error);
   }

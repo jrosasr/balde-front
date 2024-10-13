@@ -53,12 +53,12 @@ const columns = [
   {
     key: "name",
     label: "Nombre",
-    sortable: true
+    sortable: true,
   },
   {
     key: "email",
     label: "Correo electrónico",
-    sortable: true
+    sortable: true,
   },
   {
     key: "role",
@@ -67,7 +67,7 @@ const columns = [
   {
     key: "date",
     label: "Fecha de creación",
-    sortable: true
+    sortable: true,
   },
   {
     key: "actions",
@@ -81,7 +81,7 @@ const actions = (row) => [
       label: "Editar",
       icon: "i-lucide-pencil",
       click: () => {
-        modalForm.value.loadData(row)
+        modalForm.value.loadData(row);
       },
     },
   ],
@@ -90,9 +90,9 @@ const actions = (row) => [
       label: "Eliminar",
       icon: "i-lucide-trash",
       click: async () => {
-        if (confirm('Esté seguro de eliminar este registro?')) {
-          await general.deleteRecord(`/api/users/${row.id}`)
-          await getUsers()
+        if (confirm("Esté seguro de eliminar este registro?")) {
+          await general.deleteRecord(`/api/users/${row.id}`);
+          await getUsers();
         }
       },
     },
@@ -122,6 +122,6 @@ async function getUsers() {
 }
 
 onMounted(async () => {
-  await getUsers()
+  await getUsers();
 });
 </script>
