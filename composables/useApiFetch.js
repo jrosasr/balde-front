@@ -20,6 +20,10 @@ export const useApiFetch = async (path = "/", options = {}) => {
 
   const urlBase = config.public.API_URL ?? "";
 
+  if (config.public.APP_ENV === "production" && urlBase.startsWith("http://")) {
+    urlBase.replace("http://", "https://");
+  }
+
   const { data, error, status } = await useFetch(`${urlBase}${path}`, {
     credentials: "include",
     watch: false,
