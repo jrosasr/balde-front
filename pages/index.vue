@@ -68,6 +68,10 @@ const columns = [
     label: "Rol",
   },
   {
+    key: "date",
+    label: "Fecha de creación",
+  },
+  {
     key: "actions",
     label: "",
   },
@@ -112,7 +116,7 @@ async function getUsers() {
     return {
       ...user,
       rol: user.roles[0].name,
-      date: general.formatDate(user.updated_at),
+      date: general.formatDate(user.created_at),
     };
   });
 }
