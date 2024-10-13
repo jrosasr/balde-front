@@ -1,75 +1,25 @@
-# Nuxt UI Minimal Starter
+# BaldeCash Front
 
-Look at [Nuxt docs](https://nuxt.com/docs/getting-started/introduction) and [Nuxt UI docs](https://ui.nuxt.com) to learn more.
+Esta aplicación SPA (Single Page Application) fue desarrollada como una prueba técnica, demostrando habilidades en el desarrollo frontend con Nuxt.js y NuxtUI. La aplicación permite gestionar usuarios, incluyendo creación, edición, eliminación y visualización de un listado.
 
-## Setup
+### Tecnologías Utilizadas
 
-Make sure to install the dependencies:
+Frontend: Vue.js (Nuxt.js), NuxtUI y Pinia.
 
-```bash
-# npm
-npm install
+## Iniciar el proyecto
 
-# pnpm
-pnpm install
+### Configuración
+1. Clonar el repositorio
+    
+    `git clone https://github.com/tu-usuario/tu-repositorio.git`
 
-# yarn
-yarn install
+2. Instalar dependencias
 
-# bun
-bun install
-```
+    `npm install`
+3. Crear un archivo .env: Crea un archivo .env en la raíz del proyecto y agrega la siguiente variable:
 
-## Development Server
+    `API_URL=http://tu-api-url`
 
-Start the development server on `http://localhost:3000`:
+4. Iniciar el desarrollo
 
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+    `npm run dev`
