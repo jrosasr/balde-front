@@ -1,7 +1,12 @@
 <template>
   <div class="max-w-7xl mx-auto p-4">
-    <div class="flex justify-end space-x-2">
-      <ColorScheme>
+    <div class="flex justify-between">
+      <h1 class="text-2xl">
+        {{ auth.isLoggedIn ? auth.user.full_name : '' }}
+        <span v-if="auth.isLoggedIn" class="text-gray-500">({{ auth.isAdmin ? 'Admin' : 'Reviewer' }})</span>
+      </h1>
+      <div class="flex space-x-2">
+        <ColorScheme>
         <USelect
           v-model="$colorMode.preference"
           :options="['system', 'light', 'dark']"
@@ -11,6 +16,7 @@
         Logout
         <UIcon name="i-lucide-log-out" />
       </UButton>
+      </div>
     </div>
     <slot />
     <UNotifications />

@@ -45,8 +45,8 @@
           </template>
         </UFormGroup>
 
-        <UButton type="submit" color="primary" class="w-full">
-          <span class="mx-auto">Iniciar sesión</span>
+        <UButton type="submit" color="primary" block>
+          Iniciar sesión
         </UButton>
       </form>
     </UCard>
