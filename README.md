@@ -24,3 +24,11 @@ Frontend: Vue.js (Nuxt.js), NuxtUI y Pinia.
 4. Iniciar el desarrollo
 
     `npm run dev`
+
+### En modo desarrollo
+En en archivo server/api/sendEmail.js el valor de la variable **body.email** debe ser sustituido por el correo registrado en resend, de lo contrario fallara el envio de correos
+
+
+`    
+    to: [body.email] --> to: ['pruebas@gmail.com']
+`
