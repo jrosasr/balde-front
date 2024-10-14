@@ -15,7 +15,9 @@ Frontend: Vue.js (Nuxt.js), NuxtUI y Pinia.
 
 2. Crea un archivo .env en la raíz del proyecto y agrega la siguiente variable:
 
+    `APP_ENV=production`
     `API_URL=http://tu-api-url`
+    `RESEND_API_KEY=resend_key`
 
 3. Instalar dependencias
 
