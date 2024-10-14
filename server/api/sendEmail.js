@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
       from: 'Acme <onboarding@resend.dev>',
       to: [body.email],
       subject: `Registro de usuario para ${body.name}`,
-      html: '<strong>It works!</strong>',
+      html: `Saludos, ${body.name}. <br> Esta son tus credenciales de acceso. <br> <br> Email: ${body.email} <br> Contraseña: ${body.password}`,
     });
 
     return Response.json(data);
