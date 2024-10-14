@@ -5,6 +5,12 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
 
+  /*
+    Durante el **Desarrollo** el email al que se puede enviar debe ser el condigurado en la cuenta RESEND
+    de lo contrario fallara el envio de correos
+    Ej: 'pruebas@gmail.com'
+  */
+
   try {
     const data = await resend.emails.send({
       from: 'Acme <onboarding@resend.dev>',
