@@ -1,6 +1,15 @@
 # BaldeCash Front - Desafío
 
+![login](https://github.com/jrosasr/balde-front/blob/master/public/screens/login.png?raw=true "login")
+
 ![dashboard](https://github.com/jrosasr/balde-front/blob/master/public/screens/dashboard.png?raw=true "dashboard")
+
+![modal form](https://github.com/jrosasr/balde-front/blob/master/public/screens/create.png?raw=true "modal form")
+
+![row option](https://github.com/jrosasr/balde-front/blob/master/public/screens/options.png?raw=true "row option")
+
+![email example](https://github.com/jrosasr/balde-front/blob/master/public/screens/email1.png?raw=true "email example")
+
 
 Esta aplicación SPA (Single Page Application) fue desarrollada como una prueba técnica, demostrando habilidades en el desarrollo frontend con Nuxt.js y NuxtUI. La aplicación permite gestionar usuarios, incluyendo creación, edición, eliminación y visualización de un listado. Todo esto delimitado por roles *admin* y *reviewer*
 
