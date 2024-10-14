@@ -24,9 +24,6 @@ export const useApiFetch = async (path = "/", options = {}) => {
     urlBase.replace("http://", "https://");
   }
 
-  console.log('urlBase', urlBase);
-  console.log(useCookie("XSRF-TOKEN"));
-  
   const { data, error, status } = await useFetch(`${urlBase}${path}`, {
     credentials: "include",
     watch: false,
